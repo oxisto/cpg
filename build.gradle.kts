@@ -107,6 +107,16 @@ repositories {
             artifact("/[organisation].[module]_[revision].[ext]")
         }
     }
+
+    maven {
+        url = uri("https://oss.sonatype.org/content/repositories/snapshots")
+        mavenContent {
+            snapshotsOnly()
+        }
+        content {
+            includeGroup("io.github.oxisto")
+        }
+    }    
 }
 
 tasks.withType<GenerateModuleMetadata> {
@@ -174,6 +184,8 @@ dependencies {
 
     // needed for jersey, not part of JDK anymore
     compile("javax.xml.bind", "jaxb-api", "2.3.1")
+
+    compile("io.github.oxisto", "reticulated-python", "0.2-SNAPSHOT")
 
     testImplementation("org.junit.jupiter", "junit-jupiter-api", versions["junit5"])
     testRuntimeOnly("org.junit.jupiter", "junit-jupiter-engine", versions["junit5"])
